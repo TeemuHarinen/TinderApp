@@ -1,3 +1,4 @@
+// Load .environment variables
 require('dotenv').config()
 const PORT = 3001
 const uri = process.env.MONGO_URI
@@ -18,7 +19,7 @@ app.get('/', (req, res) => {
 })
 
 
-
+// Route to get users by gender
 app.get('/gendered-users', async (req, res) => {
   const client = new MongoClient(uri)
   const genderToFind = req.query.gender
@@ -35,6 +36,7 @@ app.get('/gendered-users', async (req, res) => {
   }
 })
 
+// New user registeration route
 app.post('/register', async (req, res) => {
   const { email, password } = req.body
   const client = new MongoClient(uri)
@@ -71,6 +73,7 @@ app.post('/register', async (req, res) => {
   }
 })
 
+// Login route, returns a token and the user id
 app.post('/login', async (req, res) => {
   const { email, password } = req.body
   const client = new MongoClient(uri)
@@ -85,6 +88,7 @@ app.post('/login', async (req, res) => {
       return res.status(400).json({ message: "User does not exist"})
     }
 
+    // Check if the password is correct
     const isPasswordCorrect = await bcrypt.compare(password, existingUser.hashed_password)
     if (!isPasswordCorrect) {
       return res.status(400).json({ message: "Invalid credentials"})
@@ -94,13 +98,16 @@ app.post('/login', async (req, res) => {
       expiresIn: '1h'
     })
 
-    res.status(201).json({ token, user_id: existingUser.user_id }) // check this
+    // Send the token and the user id as response
+    res.status(201).json({ token, user_id: existingUser.user_id })
   } catch (err) {
     console.log(err)
     res.status(500).json({ message: "Something went wrong"})
   }
 })
 
+// Update user route, used after the initial email & password registeration to gather more data
+// gender_interest, gender_identity, dob_day, dob_month, dob_year, first_name, last_name, url, about
 app.put('/user', async (req, res) => {
   const data = req.body.data
   const client = new MongoClient(uri)
@@ -115,6 +122,7 @@ app.put('/user', async (req, res) => {
       return res.status(400).json({ message: "User does not exist"})
     }
 
+    // Update the user with the new data
     const updatedUser = await users.updateOne({ user_id: data.user_id }, { $set: { ...data } })
     res.status(201).json({ message: "User updated" })
   } catch (err) {
@@ -124,6 +132,7 @@ app.put('/user', async (req, res) => {
     await client.close()
   } 
 })
+
 
 app.get('/user', async (req, res) => {
   const userId = req.query.userId
@@ -148,6 +157,7 @@ app.get('/user', async (req, res) => {
   }
 })
 
+// After swiping right on a user, add the matched user to the matches array of logged in user
 app.put('/addmatch', async (req, res) => {
   const { userId, swipedUser } = req.body
   const client = new MongoClient(uri)
@@ -172,7 +182,7 @@ app.put('/addmatch', async (req, res) => {
   }
 })
 
-
+// GET Route to get user data by user id
 app.get('/users', async (req, res) => {
   const client = new MongoClient(uri)
   const userIds = JSON.parse(req.query.userIds)
@@ -182,6 +192,7 @@ app.get('/users', async (req, res) => {
       const database = client.db('app-data')
       const users = database.collection('users')
 
+      // returns users where the user_id is in the userIds array
       const pipeline =
           [
               {
@@ -201,6 +212,7 @@ app.get('/users', async (req, res) => {
   }
 })
 
+// GET Route to get messages between two users
 app.get('/messages', async (req, res) => {
   const { userId, matchedUserId } = req.query
   const client = new MongoClient(uri)
@@ -217,6 +229,7 @@ app.get('/messages', async (req, res) => {
   }
 })
 
+// POST Route to send a message
 app.post('/messages', async (req, res) => {
   const { timestamp, from_userId, to_userId, message } = req.body
   const client = new MongoClient(uri)
