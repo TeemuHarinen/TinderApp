@@ -17,25 +17,20 @@ const AuthModal = ({ setShowModal, hasSigned }) => {
   }
 
   const handleSubmit = async (e) => {
-    console.log("Sending request", email, password)
     e.preventDefault()
     try {
-      console.log("Post request to database")
       let response;
       if (hasSigned) {
-        console.log("Signing up")
         response = await axios.post('http://localhost:3001/register', {
         email,
         password
       })
       } else {
-        console.log("Logging in")
         response = await axios.post('http://localhost:3001/login', {
           email,
           password
         })
       }
-      console.log(response)
       setCookie('AuthToken', response.data.token)
       setCookie('UserId', response.data.user_id)
       
@@ -43,8 +38,9 @@ const AuthModal = ({ setShowModal, hasSigned }) => {
         navigate('/welcome')
       }
       if(response.status === 201 && !hasSigned) {
-        navigate('/dashboard')
+        navigate('/mainscreen')
       }
+      window.location.reload() // reload the page to get the cookies
 
     } catch (err) {
       console.log(err)

@@ -1,12 +1,50 @@
 import ChatInput from "./ChatInput"
 import Chat from "./Chat"
+import axios from "axios"
+import { useState, useEffect } from "react"
 
+const ChatDisplay = ({ user, clickedMatch }) => {
+  const [messages, setMessages] = useState(null)
 
-const ChatDisplay = () => {
+  // gets all messages between the user and the clicked match
+  const getUsersMsg = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/messages', {
+        params: { userId: user?.user_id, matchedUserId: clickedMatch?.user_id }
+      }) 
+      setMessages(response.data)
+
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    getUsersMsg()
+  }, [])
+
+  // format messages to display in chat
+  const formatMessages = () => {
+    let formattedMessages = []
+    messages?.forEach(message => {
+      if (message.from_userId === user?.user_id) {
+        formattedMessages.push({ sender: user?.first_name, message: message.message, timestamp: message.timestamp })
+      } else {
+        formattedMessages.push({ sender: clickedMatch?.first_name, message: message.message, timestamp: message.timestamp })
+      }
+    })
+    // sort messages by timestamp
+    formattedMessages.sort((a, b) => {
+      return new Date(a.timestamp) - new Date(b.timestamp)
+    })
+    return formattedMessages
+  }
+  const formattedMessages = formatMessages(messages)
+
   return (
     <>
-    <Chat/>
-    <ChatInput/>
+    <Chat messages={formattedMessages}/>
+    <ChatInput user={user} clickedUser={clickedMatch} getMessages={getUsersMsg}/>
     </>
   )
 }

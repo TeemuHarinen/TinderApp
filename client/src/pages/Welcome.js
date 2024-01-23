@@ -21,9 +21,6 @@ const Welcome = () => {
 
   let navigate = useNavigate()
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   const handleChange = (event) => {
     let { id, value } = event.target;

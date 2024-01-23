@@ -1,13 +1,26 @@
-const ChatHeader = () => {
+import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router-dom'
+
+const ChatHeader = ({ user }) => {
+  const [ cookies, setCookie, removeCookie ] = useCookies(['user'])
+
+  const navigate = useNavigate()
+
+  const logout = () => {
+    removeCookie('UserId', cookies.UserId)
+    removeCookie('AuthToken', cookies.AuthToken)
+    navigate('/')
+  }
+  if (!user) return null
   return (
     <div className="chat-container-header">
       <div className="profile">
         <div className="img-container">
-          <img src=""/>
+          <img src={user.url} alt="User"/>
         </div>
-        <h4>Username</h4>
+        <h4>{user.first_name}</h4>
       </div>
-      <button className="secondary-button">Log out</button>
+      <button className="secondary-button" onClick={logout}>Log out</button>
     </div>
   )
 }

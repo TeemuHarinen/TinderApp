@@ -1,21 +1,28 @@
 import Nav from "../components/Nav"
 import AuthModal from "../components/AuthForm"
 import { useState } from "react"
+import { useCookies } from "react-cookie"
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false)
   const [hasSigned, setHasSigned] = useState(false)
-  const authToken = false
+  const [cookies, setCookie, removeCookie] = useCookies(['user'])
+  const authToken = cookies.AuthToken
 
   const handleClick = () => {
-    console.log("clicked")
+    if (authToken) {
+      removeCookie('UserId', cookies.UserId)
+      removeCookie('AuthToken', cookies.AuthToken)
+      window.location.reload()
+      return 
+    }
     setShowModal(true)
     setHasSigned(true)
   }
 
   return (
     <div className="overlay">
-      <Nav setShowModal={setShowModal} showModal={showModal} setHasSigned={setHasSigned}/>
+      <Nav authToken={authToken} setShowModal={setShowModal} showModal={showModal} setHasSigned={setHasSigned}/>
       <div className="home">
         <h1>Swipe!</h1>
         <button className="primary-button" onClick={handleClick}>

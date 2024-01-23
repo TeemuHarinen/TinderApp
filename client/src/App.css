@@ -1,4 +1,5 @@
 /* Some of the CSS from Ania Kubow: https://www.youtube.com/watch?v=Q70IMS-Qnjk&t=2394s */
+
 @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700;800&display=swap');
 
 html, body {
@@ -168,6 +169,7 @@ nav .logo-container .logo {
 .mainscreen {
     display: flex;
     justify-content: space-between;
+    flex-direction: row;
 }
 
 .mainscreen .swipe-container {
@@ -270,4 +272,75 @@ nav .logo-container .logo {
     padding: 20px;
     display: flex;
     flex-direction: column;
+}
+
+.matches-display {
+    padding: 20px;
+    height: 60vh;
+    overflow-y: auto;
+}
+
+.chat-container {
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    width: 100%;
+    text-align: left;
+    z-index: 1;
+}
+
+/* Media Queries for more responsive design */
+@media (min-width: 600px) {
+    .chat-container {
+        width: 70%;
+    }
+}
+
+@media (min-width: 900px) {
+    .chat-container {
+        width: 30%;
+    }
+}
+
+@media (min-width: 600px) {
+    .chat-input {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 600px) {
+    .chat-display,
+    .matches-display {
+        height: 70vh;
+    }
+}
+
+@media (min-width: 900px) {
+    .chat-display,
+    .matches-display {
+        height: 80vh;
+    }
+}
+
+@media (min-width: 600px) {
+    .sidebar,
+    .content {
+        width: 50%;
+    }
+}
+
+@media (max-width: 600px) {
+    .mainscreen .swipe-container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .mainscreen {
+        flex-direction: column; /* in mobile mode, layout becomes vertical */
+    }
+
+    .mainscreen .swipe-container {
+        width: 100%;
+    }
 }

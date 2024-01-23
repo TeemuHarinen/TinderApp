@@ -1,11 +1,11 @@
 // import image
 
-const Nav = ({ setShowModal, showModal, setHasSigned}) => {
+const Nav = ({ setShowModal, showModal, setHasSigned, authToken}) => {
   const handleClick = () => {
     setShowModal(true)
     setHasSigned(false)
   }
-  const authToken = false
+  
   return (
     <nav>
       <div className="logo-container">
