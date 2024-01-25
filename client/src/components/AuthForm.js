@@ -53,11 +53,11 @@ const AuthModal = ({ setShowModal, hasSigned }) => {
       <div className="close-icon" onClick={handleClick}>❌</div>
       <h2> {hasSigned ? "Create account" : "Log in"} </h2>
       <form onSubmit={handleSubmit}>
-        <input type="email" id="email" placeholder="email" required={true} onChange={(e) => setEmail(e.target.value)}/>
+        <input name="email" type="email" id="email" placeholder="email" required={true} onChange={(e) => setEmail(e.target.value)}/>
         <br/>
-        <input type="password" id="password" placeholder="password" required={true} onChange={(e) => setPassword(e.target.value)}/>
+        <input name="password" type="password" id="password" placeholder="password" required={true} onChange={(e) => setPassword(e.target.value)}/>
         <p>{error}</p>
-        <input className="secondary-button"type="submit" value={hasSigned ? "Create account" : "Log in"} />
+        <input data-cy="submit" className="secondary-button" type="submit" value={hasSigned ? "Create account" : "Log in"} />
       </form>
 
     </div>

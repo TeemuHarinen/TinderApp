@@ -261,6 +261,28 @@ app.post('/messages', async (req, res) => {
   }
 })
 
+// POST Route to delete a user (only used for Cypress testing)
+// If in production, this route should be removed or require authorization!
+app.post('/deleteUser', async (req, res) => {
+  console.log("Account to delete:", req.body)
+  const { email } = req.body
+  const client = new MongoClient(uri)
+
+  try {
+    await client.connect()
+    const database = client.db('app-data')
+    const users = database.collection('users')
+
+    const deletedUser = await users.deleteOne({ email })
+    res.status(201).json({ message: "User deleted" })
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ message: "Something went wrong"})
+  } finally {
+    await client.close()
+  }
+})
+
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 })

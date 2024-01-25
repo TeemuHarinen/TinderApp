@@ -56,6 +56,7 @@ const Welcome = () => {
             <label htmlFor="first_name">First name</label>
             <input
               type="text"
+              data-cy="first_name"
               id="first_name"
               placeholder="first name"
               required={true}
@@ -66,6 +67,7 @@ const Welcome = () => {
             <div className="multiple-container">
               <input
                 type="number"
+                data-cy="dob_day"
                 id="dob_day"
                 placeholder="dd"
                 required={true}
@@ -74,6 +76,7 @@ const Welcome = () => {
               />
               <input
                 type="number"
+                data-cy="dob_month"
                 id="dob_month"
                 placeholder="DD"
                 required={true}
@@ -82,6 +85,7 @@ const Welcome = () => {
               />
               <input
                 type="number"
+                data-cy="dob_year"
                 id="dob_year"
                 placeholder="dd"
                 required={true}
@@ -94,6 +98,7 @@ const Welcome = () => {
             <div className="multiple-input-container">
               <input
                 id="gender_identity"
+                data-cy="gender_identity_man"
                 type="radio"
                 name="gender_identity"
                 value="man"
@@ -104,6 +109,7 @@ const Welcome = () => {
               <input
                 id="gender_identity"
                 type="radio"
+                data-cy="gender_identity_woman"
                 name="gender_identity"
                 value="woman"
                 onChange={handleChange}
@@ -116,6 +122,7 @@ const Welcome = () => {
             <input
                 id="gender_interest"
                 type="radio"
+                data-cy="gender_interest_man"
                 name="gender_interest"
                 value="man"
                 onChange={handleChange}
@@ -124,6 +131,7 @@ const Welcome = () => {
               <label htmlFor="man-gender-interest">Man</label>
               <input
                 id="gender_interest"
+                data-cy="gender_interest_woman"
                 type="radio"
                 name="gender_interest"
                 value="woman"
@@ -136,6 +144,7 @@ const Welcome = () => {
             <label htmlFor="about">About me</label>
             <input
               type="text"
+              data-cy="about"
               id="about"
               placeholder="Tell something about yourself!"
               required={true}
@@ -148,6 +157,7 @@ const Welcome = () => {
           <h4> Upload a picture</h4>
             <input
               name="url"
+              data-cy="url"
               type="url"
               id="url"
               required={true}
