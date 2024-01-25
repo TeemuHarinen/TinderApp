@@ -66,7 +66,6 @@ const UpdateProfile = () => {
     navigate('/mainscreen')
   }
 
-  // Show logged in user data
   return (
     <>
       <Nav authToken={authToken} setShowModal={() => {}} showModal={false} />

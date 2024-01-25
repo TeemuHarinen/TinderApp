@@ -106,7 +106,6 @@ const Mainscreen = () => {
   return (
     <div className="mainscreen">
       <ChatContainer user={user}/>
-      <div className="swiper-container">
         <div className="card-container">
         {filteredUserAndGender?.map((character, _index) =>
           <Card 
@@ -125,7 +124,6 @@ const Mainscreen = () => {
         )}
         </div>
       </div>
-    </div>
   )
 }
 

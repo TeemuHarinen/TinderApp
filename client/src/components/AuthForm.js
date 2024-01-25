@@ -16,21 +16,27 @@ const AuthModal = ({ setShowModal, hasSigned }) => {
     setShowModal(false)
   }
 
+  // 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       let response;
+      // If the user is signing up, send a post request to the register route
       if (hasSigned) {
         response = await axios.post('http://localhost:3001/register', {
         email,
         password
-      })
+      }) // If the user is logging in, send a post request to the login route
       } else {
         response = await axios.post('http://localhost:3001/login', {
           email,
           password
         })
       }
+
+      // Set the cookies:
+      // AuthToken: Used for authentication
+      // UserId: Used to identify the user, and to fetch the specific user's data from the database
       setCookie('AuthToken', response.data.token)
       setCookie('UserId', response.data.user_id)
       

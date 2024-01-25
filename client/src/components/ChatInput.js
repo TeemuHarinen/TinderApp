@@ -8,7 +8,7 @@ const ChatInput = ({ user, clickedUser, getMessages }) => {
   const addMsg = async () => {
     try {
       const response = await axios.post('http://localhost:3001/messages', {
-        timestamp: new Date().toISOString(),
+        timestamp: new Date().toISOString(), // Creates a timestamp in ISO format, from current time
         from_userId: user?.user_id,
         to_userId: clickedUser?.user_id,
         message: textArea

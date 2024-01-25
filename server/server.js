@@ -41,6 +41,7 @@ app.post('/register', async (req, res) => {
   const { email, password } = req.body
   const client = new MongoClient(uri)
   
+  // uuidv4 generates a random user id
   const generatedUserId = uuidv4()
   const hashedPass = await bcrypt.hash(password, 10)
   try {
@@ -53,6 +54,7 @@ app.post('/register', async (req, res) => {
       return res.status(400).json({ message: "User already exists"})
     }
 
+    // Remove whitespaces and make the email lowercase - to avoid issues such as duplication
     const sanitazedEmail = email.toLowerCase().trim()
     const newUser = {
       email: sanitazedEmail,
@@ -262,7 +264,7 @@ app.post('/messages', async (req, res) => {
 })
 
 // POST Route to delete a user (only used for Cypress testing)
-// If in production, this route should be removed or require authorization!
+// If in production, this route should be removed or require admin authorization!
 app.post('/deleteUser', async (req, res) => {
   console.log("Account to delete:", req.body)
   const { email } = req.body

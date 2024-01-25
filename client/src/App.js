@@ -10,11 +10,11 @@ const App = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['user'])
   const authToken = cookies.AuthToken
 
+  // /welcome, /mainscreen, update_profile are protected routes, so we need to check if the user has an authToken
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-
         {authToken && <Route path="/welcome" element={<Welcome />} />}
         {authToken && <Route path="/mainscreen" element={<Mainscreen />} />}
         {authToken && <Route path="/update_profile" element={<UpdateProfile />} />}

@@ -22,13 +22,15 @@ h2 {
 }
 
 .primary-button {
-    color: rgb(255,255,255);
+    color: rgb(255,255,255);    
+    align-items: center;
     text-transform: uppercase;
     font-size: 15px;
     background: red;
     padding: 12px 30px;
     border-radius: 30px;
     border: none;
+
 }
 
 .secondary-button {
@@ -132,7 +134,9 @@ nav .logo-container .logo {
 
 /* Welcome */
 .welcome {
+    
     border-top: solid 1px rgb(213, 213, 213);
+    align-items: center;
 }
 
 .welcome h4 {
@@ -193,12 +197,7 @@ nav .logo-container .logo {
     height: 650px;
 }
 
-.card-container {
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-}
+
 
 .card {
     width: 300px;
@@ -210,10 +209,19 @@ nav .logo-container .logo {
 
 .card-info {
     position: middle;
-    bottom: -10;
+    bottom: 20;
     color: darkcyan;
     background-color: rgb(255, 255, 255);
     z-index: 1;
+}
+
+.card-container {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
 }
 
 .mainscreen .swipe-info {
@@ -349,9 +357,15 @@ nav .logo-container .logo {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
+    .welcome form input {
+        max-width: 30px;
+    }
+}
+
+@media (min-width: 600px) {
     .mainscreen .swipe-container {
-        width: 100%;
+        width: 70%;
     }
 }
 

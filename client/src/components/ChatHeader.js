@@ -6,6 +6,7 @@ const ChatHeader = ({ user }) => {
 
   const navigate = useNavigate()
 
+  // Remove the cookies and navigate to the home page
   const logout = () => {
     removeCookie('UserId', cookies.UserId)
     removeCookie('AuthToken', cookies.AuthToken)

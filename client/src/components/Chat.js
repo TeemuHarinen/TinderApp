@@ -1,6 +1,6 @@
 const Chat = ({ messages, lastEdited }) => {
 
-  if (!messages || !lastEdited) return <>Loading...</>
+  if (!messages || !lastEdited) return <>No chats...</>
 
   const date = new Date(lastEdited.timestamp)
   const dateString = date.toLocaleDateString()

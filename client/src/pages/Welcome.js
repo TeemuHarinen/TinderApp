@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import Nav from "../components/Nav"
 
-
+// This page is rendered when the user first signs up, and is used to collect the user's information
 const Welcome = () => {
   const [cookies, setCookies, removeCookies] = useCookies(['user'])
   const authToken = cookies.AuthToken
@@ -151,10 +151,7 @@ const Welcome = () => {
               value={data.about}
               onChange={handleChange}
             />
-            <input className="primary-button" type="submit" id="submit"></input>
-          </section>
-          <section>
-          <h4> Upload a picture</h4>
+            <h4> Upload a picture</h4>
             <input
               name="url"
               data-cy="url"
@@ -167,6 +164,7 @@ const Welcome = () => {
           <div className="picture-container">
             {data.url && <img src={data.url} alt="Preview "/>}
           </div>
+            <input className="primary-button" type="submit" id="submit"></input>
           </section>
         </form>
       </div>

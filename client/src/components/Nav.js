@@ -1,4 +1,3 @@
-// import image
 
 const Nav = ({ setShowModal, showModal, setHasSigned, authToken}) => {
   const handleClick = () => {

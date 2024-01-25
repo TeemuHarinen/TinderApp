@@ -22,6 +22,7 @@ const MatchesDisplay = ({ matches, setClickedMatch }) => {
     getMatches()
   },[])
 
+  // Filter the matched users to only show the users that have matched with the logged in user
   const bothHaveMatched = matchedUsers?.filter(matchedProfile => matchedProfile.matches.filter((match) => match === cookies.UserId).length > 0)
   return (
     <div>
