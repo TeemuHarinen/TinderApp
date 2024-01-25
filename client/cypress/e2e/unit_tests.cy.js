@@ -1,6 +1,5 @@
 
-
-describe('Backend running', () => {
+describe('Backend testing', () => {
   it('Default route works', () => {
     cy.request('http://localhost:3001')
       .should((response) => {
@@ -97,7 +96,7 @@ describe('Welcome page', () => {
     cy.get('input[data-cy="about"]').type('I am a test user')
     cy.get('input[data-cy="url"]').type('https://randomuser.me/api/portraits/men/2.jpg')
     cy.get('.primary-button').click()
-    cy.get('.swiper-container').should('exist')
+    cy.get('.card-container').should('exist')
   })
 
 })
