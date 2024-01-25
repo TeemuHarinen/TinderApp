@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react"
-import { useCookies } from "react-cookie"
-import { useNavigate } from "react-router-dom"
-import axios from "axios"
-import Nav from "../components/Nav"
+import { useCookies } from 'react-cookie'
+import { useState, useEffect} from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import Nav from '../components/Nav'
 
-
-const Welcome = () => {
-  const [cookies, setCookies, removeCookies] = useCookies(['user'])
+const UpdateProfile = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(['user'])
+  const [user, setUser] = useState(null)
+  const userId = cookies.UserId
   const authToken = cookies.AuthToken
+  let navigate = useNavigate()
+
   const [data, setData] = useState({
     user_id: cookies.UserId,
     first_name: "",
@@ -20,8 +23,21 @@ const Welcome = () => {
     about: ''
   })
 
-  let navigate = useNavigate()
+  const getUser = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/user', {
+        params: { userId }
+      }) 
+      setUser(response.data)
+      console.log(response.data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
+  useEffect(() => {
+    getUser()
+  }, [])
 
   const handleChange = (event) => {
     let { id, value } = event.target;
@@ -46,11 +62,24 @@ const Welcome = () => {
     }
   }
 
+  const handleBackout = () => {
+    navigate('/mainscreen')
+  }
+
+  // Show logged in user data
   return (
     <>
       <Nav authToken={authToken} setShowModal={() => {}} showModal={false} />
+      <h2 className="back-button"onClick={handleBackout}> Back </h2>
       <div className="welcome">
-        <h2> Create account</h2>
+        <h2> Current info </h2>
+        <h4> First name: {user?.first_name} </h4>
+        <h4> Birthday: {user?.dob_day}/{user?.dob_month}/{user?.dob_year} </h4>
+        <h4> Gender: {user?.gender_identity}</h4>
+        <h4> Gender interest: {user?.gender_interest}</h4>
+        <h4> About me: {user?.about}</h4>
+        <h4> Picture URI: {user?.url}</h4>
+        <h2> Update profile </h2>
         <form onSubmit={handleSubmit}>
           <section>
             <label htmlFor="first_name">First name</label>
@@ -145,7 +174,7 @@ const Welcome = () => {
             <input className="primary-button" type="submit" id="submit"></input>
           </section>
           <section>
-          <h4> Upload a picture</h4>
+          <h3> Upload a picture</h3>
             <input
               name="url"
               type="url"
@@ -164,4 +193,4 @@ const Welcome = () => {
   )
 }
 
-export default Welcome
+export default UpdateProfile

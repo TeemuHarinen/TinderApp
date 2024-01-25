@@ -133,7 +133,7 @@ app.put('/user', async (req, res) => {
   } 
 })
 
-
+// GET Route to get user data by user id
 app.get('/user', async (req, res) => {
   const userId = req.query.userId
   const client = new MongoClient(uri)
@@ -182,7 +182,7 @@ app.put('/addmatch', async (req, res) => {
   }
 })
 
-// GET Route to get user data by user id
+// GET Route to get logged in user matches
 app.get('/users', async (req, res) => {
   const client = new MongoClient(uri)
   const userIds = JSON.parse(req.query.userIds)

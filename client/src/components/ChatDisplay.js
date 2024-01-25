@@ -28,9 +28,9 @@ const ChatDisplay = ({ user, clickedMatch }) => {
     let formattedMessages = []
     messages?.forEach(message => {
       if (message.from_userId === user?.user_id) {
-        formattedMessages.push({ sender: user?.first_name, message: message.message, timestamp: message.timestamp })
+        formattedMessages.push({ sender: user?.first_name, message: message.message, timestamp: message.timestampl, sender_img: user?.url })
       } else {
-        formattedMessages.push({ sender: clickedMatch?.first_name, message: message.message, timestamp: message.timestamp })
+        formattedMessages.push({ sender: clickedMatch?.first_name, message: message.message, timestamp: message.timestamp, sender_img: clickedMatch?.url })
       }
     })
     // sort messages by timestamp
@@ -39,11 +39,14 @@ const ChatDisplay = ({ user, clickedMatch }) => {
     })
     return formattedMessages
   }
+
+  const lastMessage = messages?.[messages.length - 1]
+  console.log(lastMessage)
   const formattedMessages = formatMessages(messages)
 
   return (
     <>
-    <Chat messages={formattedMessages}/>
+    <Chat messages={formattedMessages} lastEdited={lastMessage}/>
     <ChatInput user={user} clickedUser={clickedMatch} getMessages={getUsersMsg}/>
     </>
   )

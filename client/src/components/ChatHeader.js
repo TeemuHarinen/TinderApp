@@ -12,11 +12,15 @@ const ChatHeader = ({ user }) => {
     navigate('/')
   }
   if (!user) return null
+  
+  const handleClick = () => {
+    navigate('/update_profile')
+  }
   return (
     <div className="chat-container-header">
       <div className="profile">
         <div className="img-container">
-          <img src={user.url} alt="User"/>
+          <img src={user.url} alt="User" onClick={handleClick}/>
         </div>
         <h4>{user.first_name}</h4>
       </div>

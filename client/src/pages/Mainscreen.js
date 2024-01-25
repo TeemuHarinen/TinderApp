@@ -9,6 +9,7 @@ const Mainscreen = () => {
   const [user, setUser] = useState(null)
   const [usersGendered, setUsersGendered] = useState(null)
   const [cookies, setCookie, removeCookie] = useCookies(['user'])
+  const [alreadySwiped, setAlreadySwiped] = useState([])
 
   const userId = cookies.UserId
   const getUser = async () => {
@@ -23,6 +24,7 @@ const Mainscreen = () => {
     }
   }
 
+  // get users based on logged in user gender interest
   const getUsersGendered = async () => {
     try {
       const response = await axios.get('http://localhost:3001/gendered-users', {
@@ -62,13 +64,10 @@ const Mainscreen = () => {
   const [lastDirection, setLastDirection] = useState()
 
   const swiped = (direction, swipedUser) => {
+    setAlreadySwiped([...alreadySwiped, swipedUser])
     if (direction === 'right') {
       updatedMatches(swipedUser)
       getUser()
-    }
-
-    if (direction === 'left') {
-
     }
     setLastDirection(direction)
   }
@@ -77,15 +76,21 @@ const Mainscreen = () => {
     console.log(name + ' left the screen!')
   }
 
+  // filter already matched users
   const filteredUsersByGender = usersGendered?.filter(genderedUser => !user.matches.includes(genderedUser.user_id))
-  
+  // filter out users that have already swiped on current user
+  const alreadySwipedUsers = filteredUsersByGender?.filter(genderedUser => !alreadySwiped.includes(genderedUser.user_id))
+  // filter out current user
+  const filteredUserAndGender = alreadySwipedUsers?.filter(genderedUser => genderedUser.user_id !== userId)
 
-
+  console.log(alreadySwiped)
   if (!user || !filteredUsersByGender || !usersGendered) {
     return <div>Loading...</div>
   }
 
-  if (filteredUsersByGender.length === 0) {
+  console.log(filteredUserAndGender)
+  // if there are no users to swipe, display "No more users to swipe"
+  if (filteredUserAndGender.length === 0) {
     return (
       <div className="mainscreen">
         <ChatContainer user={user}/>
@@ -97,26 +102,27 @@ const Mainscreen = () => {
       </div>
     )
   }
+
   return (
     <div className="mainscreen">
       <ChatContainer user={user}/>
       <div className="swiper-container">
         <div className="card-container">
-        {filteredUsersByGender.map((character) =>
+        {filteredUserAndGender?.map((character, _index) =>
           <Card 
+          key={_index} 
           className='swipe'
-          key={character.user_id} 
           onSwipe={(dir) => swiped(dir, character.user_id)} 
           onCardLeftScreen={() => outOfFrame(character.first_name)}
           >
-            <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
-              <h3>{character.first_name}</h3>
+            <div key={character.user_id}style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
+            </div>
+            <div className='card-info'>
+              <h4>{character.first_name}</h4>
+              <p>{character.about}</p>
             </div>
           </Card>
         )}
-        <div className="swipe-info">
-          <h2>You swiped {lastDirection}</h2>
-        </div>
         </div>
       </div>
     </div>
