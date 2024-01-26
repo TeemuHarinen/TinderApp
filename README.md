@@ -12,6 +12,8 @@ Features:
    - Secure authorization with JWT tokens
      
    - Users can login, create new accounts, modify own user data, preferences etc.
+
+   - Test automation with Cypress, E2E Testing critical functions
      
      
 ## Backend
