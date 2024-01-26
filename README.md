@@ -9,4 +9,4 @@
 ![PictureOfDetailsForm](https://github.com/TeemuHarinen/TinderApp/blob/5990d1c32450d2ddcf3aa0631d20ea5bba3df49c/pictures/SCR-20240126-njda.jpeg)
 
 ## Chatting
-![PictureWithChat](https://github.com/TeemuHarinen/TinderApp/blob/5990d1c32450d2ddcf3aa0631d20ea5bba3df49c/pictures/SCR-20240126-njda.jpeg)
+![PictureWithChat](https://github.com/TeemuHarinen/TinderApp/blob/a88e6b15c423fd8e2e38a0fab8fc1041de62bad2/pictures/SCR-20240126-njvg.png)
