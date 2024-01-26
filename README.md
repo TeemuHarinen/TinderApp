@@ -1,15 +1,16 @@
 # TinderApp
 
 Tinder clone created with MERN-stack (MongoDB, Express.js, React.js, Node.js).
+
 Features:
    - Swipe users just like in Tinder
-   - 
+     
    - Matched users show up on page
-   - 
+     
    - Immidiately chat live with matched user
-   - 
+     
    - Secure authorization with JWT tokens
-   - 
+     
    - Users can login, create new accounts, modify own user data, preferences etc.
      
      
