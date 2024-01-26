@@ -6,7 +6,8 @@
 ![PictureOfAuthForm](https://github.com/TeemuHarinen/TinderApp/blob/5990d1c32450d2ddcf3aa0631d20ea5bba3df49c/pictures/SCR-20240126-nigw.png)
 
 ## Registeration form
-![PictureOfRegisterationForm](https://github.com/TeemuHarinen/TinderApp/blob/5990d1c32450d2ddcf3aa0631d20ea5bba3df49c/pictures/SCR-20240126-njvg.png)
+![PictureOfRegisterationForm](https://github.com/TeemuHarinen/TinderApp/blob/2264a37216de903e8ec72bb74d404ec53562bd82/pictures/SCR-20240126-nitv.png)
+
 ## Home screen/Matches display
 ![PictureOfDetailsForm](https://github.com/TeemuHarinen/TinderApp/blob/5990d1c32450d2ddcf3aa0631d20ea5bba3df49c/pictures/SCR-20240126-njda.jpeg)
 
