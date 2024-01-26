@@ -1,5 +1,53 @@
 # TinderApp
 
+Tinder clone created with MERN-stack (MongoDB, Express.js, React.js, Node.js).
+Features:
+   - Swipe users just like in Tinder
+   - 
+   - Matched users show up on page
+   - 
+   - Immidiately chat live with matched user
+   - 
+   - Secure authorization with JWT tokens
+   - 
+   - Users can login, create new accounts, modify own user data, preferences etc.
+     
+     
+## Backend
+
+
+   o	Relevant libraries:
+   
+      	Runs on Node.js
+      
+      	Express package used for server hosting and routing
+      
+      	Bcrypt used to hash password
+      
+      	Dotenv for secure environment vars
+      
+      	JWT for authorization
+      
+      	MongoDB as backend, connects directly without mongoose
+      
+      	Uuid for id generation, MongoDB object id not used.
+      
+
+## Frontend
+   o	Created with React.js
+   
+   o	Relevant libraries:
+   
+      	Axios for HTTP requests
+      
+      	React-cookie for storing cookies from server, includes UserId and AuthToken
+      
+      	React-tinder-card for swiping users
+      
+      	React router for easy page manipulation
+      
+      o	Responsive design implemented with media querries, had trouble with Materialize so went with this approach instead (and because ChatGPT was surprisingly good at creating viable media queries)
+
 ## Installation
 
    - Fork the project from GitHub https://github.com/TeemuHarinen/TinderApp
