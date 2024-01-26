@@ -2,34 +2,35 @@
 
 ## Installation
 
-1)	Fork the project from GitHub https://github.com/TeemuHarinen/TinderApp
+   - Fork the project from GitHub https://github.com/TeemuHarinen/TinderApp
 
-2)	The full stack application is divided into two parts, client and server. Each needs to be started individually:
+   - The full stack application is divided into two parts, client and server. Each needs to be started individually:
 
-## 3)	Starting the server:
+## Starting the server:
 
    a)	Navigate to the server folder
 
-   b)	Run npm install to install dependencies
+   b)	Run `npm install` to install dependencies
 
-   c)	Set up environment variables. Create a .env file inside server folder with the following variable: MONGO_URI: ”Connection string for MongoDB database”
+   c)	Set up environment variables. Create a .env file inside server folder with the following variable: `MONGO_URI: ”Connection string for MongoDB database”`
 
-   d)	All done! Server should be able to start with npm run start:server, or to start without nodemon run npm start
+   d)	All done! Server should be able to start with `npm run start:server`, or to start without nodemon run `npm start`
 
    e)	(You can confirm that the server is correctly responding by visiting localhost:3001, you should see “Hello World!” on the screen.)
 
 
-## 4)	Starting the client:
+## Starting the client:
    
    a)	After starting the server in part 3.
 
    b)	Navigate to the client folder
 
-   c)	Run npm install to install dependencies
+   c)	Run `npm install` to install dependencies
 
-   d)	Run npm start to start React development client
+   d)	Run `npm start` to start React development client
 
    e)	Navigate to localhost:3000 and you should see the registeration/login page
+
 
 
 ## Registeration page
