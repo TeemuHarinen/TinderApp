@@ -1,6 +1,6 @@
 # TinderApp
 
-##Installation
+## Installation
 
 1)	Fork the project from GitHub https://github.com/TeemuHarinen/TinderApp
  (or download from Moodle.)
