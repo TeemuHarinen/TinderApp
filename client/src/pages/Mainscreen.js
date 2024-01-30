@@ -94,10 +94,8 @@ const Mainscreen = () => {
     return (
       <div className="mainscreen">
         <ChatContainer user={user}/>
-        <div className="swiper-container">
-          <div className="card-container">
+        <div className="swipe-container">
             <h2>No more users to swipe</h2>
-          </div>
         </div>
       </div>
     )
@@ -106,7 +104,7 @@ const Mainscreen = () => {
   return (
     <div className="mainscreen">
       <ChatContainer user={user}/>
-        <div className="card-container">
+        <div className="swipe-container">
         {filteredUserAndGender?.map((character, _index) =>
           <Card 
           key={_index} 

@@ -172,14 +172,13 @@ nav .logo-container .logo {
     width: 100%
 }
 
-/* Dashboard */
+/* Mainscreen */
 .mainscreen {
     display: flex;
-    justify-content: space-between;
     flex-direction: row;
 }
 
-.mainscreen .swipe-container {
+.swipe-container {
     width: 70%;
     display: flex;
     flex-direction: column;
@@ -187,6 +186,8 @@ nav .logo-container .logo {
     align-items: center;
     height: 100vh;
 }
+
+
 
 .swipe {
     position: absolute;
@@ -324,11 +325,7 @@ nav .logo-container .logo {
     }
 }
 
-@media (min-width: 900px) {
-    .chat-container {
-        width: 30%;
-    }
-}
+
 
 @media (min-width: 600px) {
     .chat-input {
@@ -343,12 +340,6 @@ nav .logo-container .logo {
     }
 }
 
-@media (min-width: 900px) {
-    .chat-display,
-    .matches-display {
-        height: 80vh;
-    }
-}
 
 @media (min-width: 600px) {
     .sidebar,

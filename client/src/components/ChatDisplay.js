@@ -41,7 +41,6 @@ const ChatDisplay = ({ user, clickedMatch }) => {
   }
 
   const lastMessage = messages?.[messages.length - 1]
-  console.log(lastMessage)
   const formattedMessages = formatMessages(messages)
 
   return (
