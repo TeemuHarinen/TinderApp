@@ -66,6 +66,7 @@ Features:
    c)	Set up environment variables. Create a .env file inside server folder with the following variable:
    
    `MONGO_URI: ”Connection string for MongoDB database”`
+   (You need to create a MongoDB account, and retrieve your connection string from your own db cluster)
 
    d)	All done! Server should be able to start with `npm run start:server`, or to start without nodemon run `npm start`
 
